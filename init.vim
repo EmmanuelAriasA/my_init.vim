@@ -12,6 +12,17 @@ Plug 'scrooloose/nerdtree'		"gestor de archivos en forma de arbol.
 Plug 'christoomey/vim-tmux-navigator'	"poder navegar entre archivos abiertos
 Plug 'jiangmiao/auto-pairs'		"autocompletado de llaves, corchetes, etc.
 Plug 'easymotion/vim-easymotion'        "Navegacion rapida en el editor
+Plug 'sheerun/vim-polyglot'
+Plug 'jiangmiao/auto-pairs'
+Plug 'alvan/vim-closetag'
+Plug 'tpope/vim-surround'
+Plug 'benmills/vimux'
+Plug 'christoomey/vim/tmux-navigator'
+Plug 'sirver/ultisnips'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'junegunn/fzf'
+Plug 'mhinz/vim-signify'
+
 call plug#end() 			"cerramos el llamado de los plugins
 
 "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -56,3 +67,20 @@ nmap <Leader>s :<Plug>(easymotion-s2)
 nmap <Leader>w :w<CR>
 nmap <Leader>q :q<CR>
 nmap <Leader>wq :wq<CR>
+nmap <Leader>; $a;<Esc>
+nmap <Leader>b :NERDTreeFind<CR>
+
+nmap <silent> <Leader><C-h> :TmuxNavigateLeft<CR>
+nmap <silent> <Leader><C-j> :TmuxNavigateDown<CR>
+nmap <silent> <Leader><C-k> :TmuxNavigateUp<CR>
+nmap <silent> <Leader><C-l> ;TmuxNavigateRight<CR>
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-reference)
+
+nmap <Leader>ob :Buffers<CR>
+nmap <C-j> 10<C-e>
+nmap <C-k> 10<C-y>
+

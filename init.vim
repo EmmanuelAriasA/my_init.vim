@@ -1,15 +1,13 @@
-":::instalacion de plugins:::
-
-call plug#begin('~/AppData/Local/nvim/pluggins') 	"directorio donde se van a instalar los plugins
-
+" PLUGINS ----------------------------------------------------------------
+call plug#begin('~/AppData/Local/nvim/plugged') "directorio donde se van a instalar los plugins
 "plugins
-Plug 'joshdick/onedark.vim'      	"tema
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }     	"tema
 Plug 'Yggdroot/indentLine' 		"indentacion
 Plug 'mattn/emmet-vim' 			"emmet para diseño web
 Plug 'vim-airline/vim-airline'		"diseño de la barra en la cual se muestran los modos, la linea, etc.
 Plug 'vim-airline/vim-airline-themes'	"temas para el vim-airline
 Plug 'scrooloose/nerdtree'		"gestor de archivos en forma de arbol.
-Plug 'christoomey/vim-tmux-navigator'	"poder navegar entre archivos abiertos
+Plug 'alexghergh/nvim-tmux-navigation' "poder navegar entre archivos abiertos
 Plug 'jiangmiao/auto-pairs'		"autocompletado de llaves, corchetes, etc.
 Plug 'easymotion/vim-easymotion'        "Navegacion rapida en el editor
 Plug 'sheerun/vim-polyglot'
@@ -17,15 +15,23 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-surround'
 Plug 'benmills/vimux'
-Plug 'christoomey/vim/tmux-navigator'
 Plug 'sirver/ultisnips'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf'
 Plug 'mhinz/vim-signify'
 
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'neovim/nvim-lspconfig'
+
+" Use release branch (recommended)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Or build from source code by using yarn: https://yarnpkg.com
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+
 call plug#end() 			"cerramos el llamado de los plugins
 
-"::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 "CONFIGURACIONES BASICAS 
 set number 				"muestra los numeros de cada linea en la parte izquierda 
@@ -44,10 +50,10 @@ set clipboard=unnamed			"para poder utilizar el portapapeles del sistema operati
 
 
 "configuracion del tema
-set termguicolors 			"activa el true color en la terminal
-colorscheme onedark 			"activar el tema onedark
 
-":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 "configuracion de emmet-vim
 let g:user_emmet_leader_key=',' 	                   "mapeando la tecla lider por una coma, con esto se completa los tag con doble coma.
 
@@ -70,17 +76,18 @@ nmap <Leader>wq :wq<CR>
 nmap <Leader>; $a;<Esc>
 nmap <Leader>b :NERDTreeFind<CR>
 
-nmap <silent> <Leader><C-h> :TmuxNavigateLeft<CR>
-nmap <silent> <Leader><C-j> :TmuxNavigateDown<CR>
-nmap <silent> <Leader><C-k> :TmuxNavigateUp<CR>
-nmap <silent> <Leader><C-l> ;TmuxNavigateRight<CR>
+nnoremap <silent> <C-h> <Cmd>NvimTmuxNavigateLeft<CR>
+nnoremap <silent> <C-j> <Cmd>NvimTmuxNavigateDown<CR>
+nnoremap <silent> <C-k> <Cmd>NvimTmuxNavigateUp<CR>
+nnoremap <silent> <C-l> <Cmd>NvimTmuxNavigateRight<CR>
+nnoremap <silent> <C-\> <Cmd>NvimTmuxNavigateLastActive<CR>
+nnoremap <silent> <C-Space> <Cmd>NvimTmuxNavigateNext<CR>
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-reference)
 
-nmap <Leader>ob :Buffers<CR>
+
 nmap <C-j> 10<C-e>
 nmap <C-k> 10<C-y>
-
